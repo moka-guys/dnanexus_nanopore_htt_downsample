@@ -3,7 +3,9 @@
   "title": "nanopore_htt_downsample_v1.0",
   "summary": "v1.0 Downsamples BAMs for Oxford Nanopore HTT repeat counting workflow",
   "dxapi": "1.0.0",
-  "version": "1.0",
+  "properties": {
+    "github release": "v1.0"
+  },
   "inputSpec": [
     {
       "name": "bam",
