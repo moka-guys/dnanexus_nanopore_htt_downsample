@@ -23,7 +23,9 @@ main() {
 	# grep for line containing the HTT repeat region +-500bp
 	original_cov=$(grep 'chr4'$'\t''3076103'$'\t''3077166' ${sambambaoutput_path} | cut -f10)
 
-	# Calculate downsample factor
+	# Calculate downsample factor by dividing desired coverage by original coverage
+	# Standard bash arithemtic can't handle floating points, so redirect into bc calculator program.
+	# -l argument tells bc to use the standard math library
 	downsample_factor=$(bc -l <<< "${downsampleto} / $original_cov")
 
 	# If downsample factor is greater than 1.0 (because BAM is already lower than requested downsample to coverage),

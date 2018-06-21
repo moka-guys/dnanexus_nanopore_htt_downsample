@@ -7,7 +7,10 @@ repeatHMM is a tool used for counting triplet repeats in Oxford Nanopore data. I
 This app is used as part of the Oxford Nanopore HTT repeat counting workflow.
 
 ## What data are required for this app to run?
-The app requires a sorted BAM file containing Oxford Nanopore reads aligned to hg19 reference sequence. The BAM file must have previously been run through the DNAnexus Sambamba_Chanjo app using the bed file `Pan_XXXX` (HTT repeat region +-500bp). The desired read depth to downsample to must also be specified. This app uses the `*.sambamba_ouput.bed` output from the previous step to calculate the proportion of reads that must be kept to achieve the desired read depth. 
+The app requires 3 inputs:
+1. Sorted BAM file containing Oxford Nanopore reads aligned to hg19 reference sequence. The BAM file must have previously been run through the DNAnexus Sambamba_Chanjo app using the bed file `Pan_XXXX` (HTT repeat region +-500bp). 
+2. The `*.sambamba_ouput.bed` output file (see 1.)
+3. The read depth to downsample to (default 4000x).
 
 ## What does this app output?
 The app outputs 2 files:
