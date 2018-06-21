@@ -51,6 +51,6 @@ main() {
 	mv $HOME/out/downsampledbam/bam/${bam_prefix}.downsampled_${downsampleto}x.bai \
 	$HOME/out/downsampledbai/bam/${bam_prefix}.downsampled_${downsampleto}x.bam.bai
 
-	# Upload all results files and directories in $HOME/out/moka_picard_stats/
+	# Upload all outputs
 	dx-upload-all-outputs --parallel
 }
