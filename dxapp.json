@@ -41,7 +41,7 @@
       "patterns": [
         "*.bam"
       ],
-      "help": "Sorted BAM file"
+      "help": "Downsampled sorted BAM file"
     },
     {
       "name": "downsampledbai",
@@ -50,7 +50,7 @@
       "patterns": [
         "*.bam.bai"
       ],
-      "help": "Sorted BAM index file"
+      "help": "Downsampled sorted BAM index file"
     }
   ],
   "runSpec": {
