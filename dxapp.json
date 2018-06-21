@@ -69,7 +69,7 @@
     "interpreter": "bash",
     "file": "src/nanopore_htt_downsample.sh",
     "systemRequirements": {
-      "*": {
+      "main": {
         "instanceType": "mem1_ssd1_x2"
       }
     },
