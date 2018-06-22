@@ -32,7 +32,7 @@ main() {
 	# set the downsample factor to 1.0 so that picard will still process BAM but all reads will be kept (the low coverage should
 	# be picked up from coverage report at QC)
 	# pipe downsample factor into awk script that checks if it is greater than 1.0
-	# If it is greater than 0, awk exits with an exit status of 0 which means if block executes and downsample
+	# If it is greater than 1, awk exits with an exit status of 0 which means if block executes and downsample
 	# factor is set to 1.0 (if it is <= 1 awk script exits with status of 1 (i.e. non-zero) so if block doesn't exectute)  
 	if echo $downsample_factor | awk '{exit !( $1 > 1.0)}'; then
     	downsample_factor=1.0
