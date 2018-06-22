@@ -1,0 +1,92 @@
+{
+  "name": "nanopore_htt_downsample_v1.0",
+  "title": "nanopore_htt_downsample_v1.0",
+  "summary": "v1.0 Downsamples BAMs for Oxford Nanopore HTT repeat counting workflow",
+  "dxapi": "1.0.0",
+  "properties": {
+    "github release": "v1.0"
+  },
+  "inputSpec": [
+    {
+      "name": "bam",
+      "label": "BAM",
+      "class": "file",
+      "patterns": [
+        "*.bam"
+      ],
+      "help": "Sorted BAM file"
+    },
+    {
+      "name": "sambambaoutput",
+      "label": "Sambamba coverage for BAM",
+      "class": "file",
+      "patterns": [
+        "*.sambamba_output.bed"
+      ],
+      "help": "Sambamba output bed with mean HTT BAM coverage"
+    },
+    {
+      "name": "downsampleto",
+      "label": "Downsampled read depth",
+      "class": "int",
+      "default": 4000,
+      "help": "Downsample HTT region +-500bp to this read depth"
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "downsampledbam",
+      "label": "Downsampled BAM",
+      "class": "file",
+      "patterns": [
+        "*.bam"
+      ],
+      "help": "Downsampled sorted BAM file"
+    },
+    {
+      "name": "downsampledbai",
+      "label": "BAM index",
+      "class": "file",
+      "patterns": [
+        "*.bam.bai"
+      ],
+      "help": "Downsampled sorted BAM index file"
+    }
+  ],
+  "runSpec": {
+    "execDepends": [
+      {
+        "name": "openjdk-7-jre-headless"
+      }
+    ],
+    "systemRequirementsByRegion": {
+      "aws:us-east-1": {
+        "main": {
+          "instanceType": "mem1_ssd1_x2"
+        }
+      }
+    },
+    "interpreter": "bash",
+    "file": "src/nanopore_htt_downsample.sh",
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x2"
+      }
+    },
+    "distribution": "Ubuntu",
+    "release": "14.04"
+  },
+  "access": {
+    "allProjects": "VIEW"   
+  },
+  "details": {
+    "upstreamUrls": [
+      "http://broadinstitute.github.io/picard/",
+      "http://picard.sourceforge.net/"
+    ],
+    "upstreamLicenses": [
+      "Apache License V2.0",
+      "MIT License"
+    ]
+  }
+}
