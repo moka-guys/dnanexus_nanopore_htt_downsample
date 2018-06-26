@@ -19,7 +19,7 @@
     {
       "name": "sambambaoutput",
       "label": "Sambamba coverage for BAM",
-      "class": "file",
+      "class": "array:file",
       "patterns": [
         "*.sambamba_output.bed"
       ],
