@@ -7,7 +7,7 @@ set -e -x -o pipefail
 main() {
 
 	# Download input files from inputSpec to ~/in/. Allows the use of DNA Nexus bash helper variables.
-	dx-download-all-inputs
+	dx-download-all-inputs --parallel
 
 	# Calculate 90% of memory size for java
 	mem_in_mb=`head -n1 /proc/meminfo | awk '{print int($2*0.9/1024)}'`
@@ -17,11 +17,15 @@ main() {
 	# Create output directories for downsampled BAM file and index
 	mkdir -p $HOME/out/downsampledbam/bam
 	mkdir -p $HOME/out/downsampledbai/bam
+ 	
+	# The sambambaoutput input has two files, therefore all inputs are within subfolder /0, /1 etc
+	# We need to find the dambamba_output.bed file from these folders - use find to search within the input subfolders for a file which ends with sambamba_output.bed
+	sambamba_bed=$(find /home/dnanexus/in/sambambaoutput/ -name "*sambamba_output.bed")
 
 	# Get average coverage of HTT repeat region +-500bp from field 10 of the first line of sambamba file
 	# This will be a floating point number
 	# grep for line containing the HTT repeat region +-500bp
-	original_cov=$(grep 'chr4'$'\t''3076103'$'\t''3077166' ${sambambaoutput_path} | cut -f10)
+	original_cov=$(grep 'chr4'$'\t''3076103'$'\t''3077166' ${sambamba_bed} | cut -f10)
 
 	# Calculate downsample factor by dividing desired coverage by original coverage
 	# Standard bash arithemtic can't handle floating points, so redirect into bc calculator program.
